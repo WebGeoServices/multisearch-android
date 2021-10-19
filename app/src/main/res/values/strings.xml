@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Multisearch Test</string>
+    <string name="woosmap_private_key">fb8f94d7-57d0-49ff-b889-d1c14a01afab</string>
+    <string name="woosmap_public_key">woos-2ad02877-72ac-328e-a2be-02bdd0457011</string>
+    <string name="places_key">AIzaSyDpyEMA0LcerlPYmkewAEhDsbTOPrLQZbs</string>
+    <string name="maps_key">AIzaSyAsb_8pLiJoEkfE6Fa97IBFTvqvURi3JQk</string>
+    <string name="no_results">No result</string>
+    <string name="from_text">From</string>
+    <string name="no_internet">Please re-connect to the internet to proceed</string>
+    <string name="back_text">Back</string>
+    <string name="map_screen_header">Map</string>
+    <string name="bottom_hint_text">Begin by typing your destination above</string>
+    <string name="search_hint">Enter your destination</string>
+    <string name="open_details">Details</string>
+</resources>

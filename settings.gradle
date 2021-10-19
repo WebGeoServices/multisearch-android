@@ -1,0 +1,3 @@
+include ':multisearch'
+include ':app'
+rootProject.name = "MultiSearchSample"

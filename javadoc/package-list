@@ -1,0 +1,7 @@
+com.webgeoservices.multisearch
+com.webgeoservices.multisearch.configs
+com.webgeoservices.multisearch.interfaces
+com.webgeoservices.multisearch.listeners
+com.webgeoservices.multisearch.providers
+com.webgeoservices.multisearch.scorers
+com.webgeoservices.multisearch.searchdatamodels

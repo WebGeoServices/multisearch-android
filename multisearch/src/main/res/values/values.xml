@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="__wgs_no_config_provided_error">At least one API configuration needed to perform the search</string>
+    <string name="__wgs_api_config_not_found_error">API configuration not found</string>
+    <string name="__wgs_context_null_error">Context cannot be null</string>
+    <string name="__wgs_api_key_cannot_be_empty_error">API key can not be null</string>
+    <string name="__wgs_provider_not_initialized">You have not initialized the provider</string>
+    <string name="__wgs_woosemap_private_key">fb8f94d7-57d0-49ff-b889-d1c14a01afab</string>
+    <string name="__wgs_woosemap_public_key">woos-2ad02877-72ac-328e-a2be-02bdd0457011</string>
+    <string name="__wgs_google_api_key">AIzaSyDpyEMA0LcerlPYmkewAEhDsbTOPrLQZbs</string>
+</resources>

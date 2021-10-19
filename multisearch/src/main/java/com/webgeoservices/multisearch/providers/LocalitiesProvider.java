@@ -1,0 +1,149 @@
+package com.webgeoservices.multisearch.providers;
+
+import android.util.Log;
+
+import com.webgeoservices.multisearch.SearchProviderType;
+import com.webgeoservices.multisearch.WoosmapException;
+import com.webgeoservices.multisearch.configs.ProviderConfig;
+import com.webgeoservices.multisearch.models.SearchApis;
+import com.webgeoservices.multisearch.models.SearchRetrofitClient;
+import com.webgeoservices.multisearch.searchdatamodels.DetailsResponseItem;
+import com.webgeoservices.multisearch.utils.SearchUtil;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import java.util.HashMap;
+import java.util.List;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
+
+/**
+ * Implements <code>autocomplete</code> and <code>details</code> API of Localities provider
+ */
+public class LocalitiesProvider extends AbstractProvider {
+
+    /***
+     *  Calls Localities <code>autocomplete</code> API
+     * @param searchString - the search string
+     * @return Returns a list of JSONObjects
+     * @throws WoosmapException - Throws an exception if any was raised
+     */
+    @Override
+    public List<JSONObject> search(String searchString) throws WoosmapException{
+        SearchApis apis;
+        try {
+            if (getProviderConfig() == null) {
+                Log.e("LocalitiesProvider", "You have not initialized Locality provider");
+                return null;
+            }
+            if (getProviderConfig().getKey().isEmpty()) {
+                Log.e("LocalitiesProvider", "API key can not be null");
+                return null;
+            }
+            cancelPreviousApiCall();
+            apis = SearchRetrofitClient.getClient().create(SearchApis.class);
+            HashMap<String,String>params=new HashMap<>();
+            params.put("input",searchString);
+            HashMap<String,String>extraParams=SearchUtil.getApiQueryParameters(getProviderConfig());
+            if(!extraParams.isEmpty()){
+                params.putAll(extraParams);
+            }
+            call=apis.getLocality(getProviderConfig().getKey(),params);
+            if (this.previousApiURl.equals(call.request().url().toString())) {
+                return this.previousApiResult;
+            }
+            Response<ResponseBody> response= call.execute();
+            if(response.isSuccessful()){
+                List<JSONObject>apiResult=new ArrayList<>();
+                assert response.body() != null;
+                JSONObject object=new JSONObject(response.body().string());
+                JSONArray localityArray=object.getJSONArray("localities");
+                for (int i=0;i<localityArray.length();i++){
+                    apiResult.add(localityArray.getJSONObject(i));
+
+                }
+                this.previousApiResult=apiResult;
+                this.previousApiURl=call.request().url().toString();
+                return apiResult;
+            }else {
+                assert response.errorBody() != null;
+                JSONObject errorObject;
+                errorObject = new JSONObject(response.errorBody().string());
+                if (errorObject.has("detail")){
+                    throw new WoosmapException(errorObject.getString("detail"));
+                }
+                if (errorObject.has("value")){
+                    throw new WoosmapException(errorObject.getString("value"));
+                }
+                throw new WoosmapException("Internal error, please try again later.");
+            }
+        }catch (Exception exception){
+            if (!call.isCanceled()){
+                throw new WoosmapException(exception.getMessage());
+            }
+        }
+        return new ArrayList<>();
+    }
+
+    /***
+     * Calls details API of the Address provider
+     * @param id - the place id of the place that needs to be fetched
+     * @return Returns an object of <code>DetailsResponseItem</code> containing details
+     * @throws WoosmapException - Throws an exception if any was raised
+     */
+    @Override
+    public DetailsResponseItem details(String id) throws WoosmapException {
+        SearchApis apis;
+        DetailsResponseItem detailsResponseItem;
+        try {
+            cancelPreviousApiCall();
+            apis = SearchRetrofitClient.getClient().create(SearchApis.class);
+            HashMap<String,String> params=new HashMap<>();
+            params.put("public_id",id);
+            HashMap<String,String>extraParams=SearchUtil.getApiQueryParameters(getProviderConfig());
+            if(!extraParams.isEmpty()){
+                params.putAll(extraParams);
+            }
+            call=apis.getLocalityDetails(getProviderConfig().getKey(),params);
+            Response<ResponseBody> response= call.execute();
+            if (response.isSuccessful()){
+                assert response.body() != null;
+                JSONObject object;
+                object = new JSONObject(response.body().string());
+                detailsResponseItem=DetailsResponseItem.fromJSON(object.getJSONObject("result")
+                        , SearchProviderType.LOCALITIES,id);
+
+                return detailsResponseItem;
+            }else {
+                JSONObject errorObject;
+                assert response.errorBody() != null;
+                errorObject = new JSONObject(response.errorBody().string());
+                if (errorObject.has("detail")){
+                    throw new WoosmapException(errorObject.getString("detail"));
+                }
+                if (errorObject.has("value")){
+                    throw new WoosmapException(errorObject.getString("value"));
+                }
+                throw new WoosmapException("Internal error, please try again later.");
+            }
+
+        }catch (Exception ex){
+            throw new WoosmapException(ex.getMessage());
+        }
+    }
+
+
+    /**
+     * The constructor
+     * @param providerConfig
+     */
+    public LocalitiesProvider(ProviderConfig providerConfig) {
+        setProviderConfig(providerConfig);
+    }
+
+}
+
+

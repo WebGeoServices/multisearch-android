@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "701763024657",
+    "project_id": "woosmap-17236",
+    "storage_bucket": "woosmap-17236.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701763024657:android:5f70bd55be3e053cfc7eb0",
+        "android_client_info": {
+          "package_name": "com.webgeoservices.sanginfo.sampleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701763024657-43rhmd7u83ea1qegv3c63k3p0gk4bk93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNf9e6dNy7hAzVnIMheRlx_NBqwnd_EnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701763024657-43rhmd7u83ea1qegv3c63k3p0gk4bk93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
