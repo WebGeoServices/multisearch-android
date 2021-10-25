@@ -108,7 +108,7 @@ public class AddressProvider extends AbstractProvider {
             cancelPreviousApiCall();
             apis = SearchRetrofitClient.getClient().create(SearchApis.class);
             HashMap<String,String> params=new HashMap<>();
-            params.put("address", URLDecoder.decode(new String(Base64.decode(id,Base64.NO_WRAP|Base64.URL_SAFE)),"UTF-8"));
+            params.put("public_id",id);
             HashMap<String,String>extraParams=SearchUtil.getApiQueryParameters(getProviderConfig());
             if(!extraParams.isEmpty()){
                 params.putAll(extraParams);
@@ -120,16 +120,12 @@ public class AddressProvider extends AbstractProvider {
                 assert response.body() != null;
                 JSONObject object;
                 object = new JSONObject(response.body().string());
-                if (!object.has("error_message")){
-                    if (object.getJSONArray("results").length()>0){
-                        detailsResponseItem=DetailsResponseItem.fromJSON(object.getJSONArray("results").getJSONObject(0)
-                                , SearchProviderType.ADDRESS,id);
-                        return detailsResponseItem;
-                    }
-                    throw new WoosmapException(object.getString("ZERO RESULTS"));
+                detailsResponseItem=DetailsResponseItem.fromJSON(object.getJSONObject("result")
+                        , SearchProviderType.ADDRESS,id);
+                
+                return detailsResponseItem;
                 }
-                throw new WoosmapException(object.getString("error_message"));
-            }else {
+            else {
                 assert response.errorBody() != null;
                 JSONObject errorObject;
                 errorObject = new JSONObject(response.errorBody().string());
