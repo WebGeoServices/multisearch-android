@@ -16,52 +16,24 @@ By comparing the user input to the returned results and computing a string match
 
 ### Installation
 ---
-> **Please Note:** These steps will change based on deployment strategy of the library
+How to get a Git project into your build:
 
-
-**Importing the library using Maven repo**
-
-Add the repository to your build file
-
-```gradle
-    allprojects {
-    	repositories {
-    		...
-    		maven { url 'https://jitpack.io' } //URL to Webgeoservice's repo
-    	}
-    }
+**Step 1. Add the JitPack repository to your build file**
+Add it in your root build.gradle at the end of repositories:
 ```
-Add the Woosmap Multisearch dependency
-```gradle
-    dependencies {
-        ...
-        implementation 'com.github.woosmap:multisearch:1.0'
-    }
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
 
-**Importing the library as AAR module** 
-
-1. Open your project in Android Studio.
-2. Right click on aap module and navigate to `New` &#8594; `Module`
-3. Select `import .jar/.AAR package` &#8594; `Next`
-4. Add dependency in your app gradle 
-
-```gradle
-    dependencies {
-        ...
-        implementation project (':multisearch-release')
-    }
+**Step 2. Add the dependency**
 ```
-
-5. Add aar dependency in app gradle.
-
-```gradle
-    dependencies {
-        ...
-        implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-        implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-        implementation 'com.github.LiquidPlayer:LiquidCore:0.6.2'
-    }
+	dependencies {
+	        implementation 'com.github.WebGeoServices:multisearch-android:tag'
+	}
 ```
 
 ### The `MultiSearch` Object
