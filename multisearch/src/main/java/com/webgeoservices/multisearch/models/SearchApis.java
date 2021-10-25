@@ -29,7 +29,7 @@ public interface SearchApis {
     Call<ResponseBody> getLocalityDetails(@Query(value = "private_key") String key,
                                           @QueryMap Map<String, String> queryParameters);
 
-    @GET("address/geocode/json?")
+    @GET("address/details/json?")
     Call<ResponseBody> getAddressDetails(@Query(value = "private_key") String key,
                                          @QueryMap Map<String, String> queryParameters);
 
