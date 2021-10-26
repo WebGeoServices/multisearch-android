@@ -91,6 +91,9 @@ public class SearchUtil {
             if (!providerConfig.getConfigParams().getExtended().equalsIgnoreCase("")){
                 queryParams.put("extended",providerConfig.getConfigParams().getExtended());
             }
+            if (!providerConfig.getConfigParams().getFields().equalsIgnoreCase("")){
+                queryParams.put("fields",providerConfig.getConfigParams().getFields());
+            }
         }
         return queryParams;
     }

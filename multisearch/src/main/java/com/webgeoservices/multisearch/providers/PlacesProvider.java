@@ -167,6 +167,9 @@ public class PlacesProvider extends AbstractProvider {
             if (!configParams.getExtended().equalsIgnoreCase("")) {
                 stringBuilder.append("&extended=").append(configParams.getExtended());
             }
+            if (!configParams.getFields().equalsIgnoreCase("")) {
+                stringBuilder.append("&fields=").append(configParams.getFields());
+            }
         }
         if (isForDetailApi) {
             stringBuilder.append("&fields=address_component,adr_address,formatted_address,geometry,icon,name,place_id,type,url,vicinity");
