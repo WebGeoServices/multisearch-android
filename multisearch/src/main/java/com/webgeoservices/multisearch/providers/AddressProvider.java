@@ -120,11 +120,13 @@ public class AddressProvider extends AbstractProvider {
                 assert response.body() != null;
                 JSONObject object;
                 object = new JSONObject(response.body().string());
-                detailsResponseItem=DetailsResponseItem.fromJSON(object.getJSONObject("result")
+                if (!object.has("error_message")){
+                    detailsResponseItem=DetailsResponseItem.fromJSON(object.getJSONObject("result")
                         , SearchProviderType.ADDRESS,id);
-                
-                return detailsResponseItem;
-                }
+                    return detailsResponseItem;
+                }                
+                throw new WoosmapException(object.getString("error_message"));
+            }
             else {
                 assert response.errorBody() != null;
                 JSONObject errorObject;
