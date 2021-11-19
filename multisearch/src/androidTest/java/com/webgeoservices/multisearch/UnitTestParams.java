@@ -8,9 +8,8 @@ public class UnitTestParams{
     public SearchProviderType expectedFirstApi;
     public SearchProviderType expectedLastApi;
 
-    public UnitTestParams(String intput,String expectedFirstResult,String expectedLastResult,int expectedResultCount, SearchProviderType expectedFirstApi, SearchProviderType expectedLastApi){
+    public UnitTestParams(String intput,String expectedFirstResult,int expectedResultCount, SearchProviderType expectedFirstApi, SearchProviderType expectedLastApi){
         this.expectedFirstResult = expectedFirstResult;
-        this.expectedLastResult = expectedLastResult;
         this.intput = intput;
         this.expectedResultCount=expectedResultCount;
         this.expectedFirstApi = expectedFirstApi;
