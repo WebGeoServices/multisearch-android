@@ -230,7 +230,7 @@ public class AutocompleteResponseItem implements Parcelable {
             AutocompleteResponseItem searchResult = new AutocompleteResponseItem();
             searchResult.api = SearchProviderType.ADDRESS;
             searchResult.description = searchItem.getString("description");
-            searchResult.id = Base64.encodeToString(searchItem.getString("description").getBytes(), Base64.NO_WRAP | Base64.URL_SAFE);
+            searchResult.id = searchItem.getString("public_id");
             searchResult.score = 0;
             if (jsonObject.has("score")) {
                 searchResult.score = (float) jsonObject.getDouble("score");

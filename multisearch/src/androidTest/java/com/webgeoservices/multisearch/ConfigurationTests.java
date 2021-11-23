@@ -158,7 +158,7 @@ public class ConfigurationTests {
             Assert.fail("No result");
         }
         Assert.assertEquals("Expected result count: ", 5,multiSearchListener.items.size());
-        Assert.assertEquals("Expected first result: ", "OUTLET SWINDON",multiSearchListener.items.get(0).getDescription());
+        Assert.assertEquals("Expected first result: ", "Outlet Leon",multiSearchListener.items.get(0).getDescription());
     }
 
     @Test

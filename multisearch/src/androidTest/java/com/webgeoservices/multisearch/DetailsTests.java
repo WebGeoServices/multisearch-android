@@ -229,12 +229,12 @@ public class DetailsTests {
         ProviderConfig.Builder builder;
 
         builder = new ProviderConfig.Builder(SearchProviderType.STORE)
-                .key(apiKey).query("type:bose_factory_store");
+                .key(apiKey).query("type:type1");
 
         multiSearch.addProvider(builder.build());//Add store provider
 
         multiSearch.addSearchListener(multiSearchListener);
-        multiSearch.detailsStore("8ad198b442c766280142c76629be00a5");
+        multiSearch.detailsStore("10008_98261");
 
         synchronized (multiSearchListener){
             try {
@@ -244,7 +244,7 @@ public class DetailsTests {
             }
         }
         if (multiSearchListener.exception==null){
-            Assert.assertEquals("Expected formated address","1001   Arney Road    Woodburn  97071 Oregon",multiSearchListener.detailsResponseItem.getFormattedAddress());
+            Assert.assertEquals("Expected formated address","1385 East Vista Way",multiSearchListener.detailsResponseItem.getFormattedAddress());
         }
         else{
             Assert.fail(multiSearchListener.exception.toString());
@@ -263,12 +263,12 @@ public class DetailsTests {
 
         builder = new ProviderConfig.Builder(SearchProviderType.STORE)
                 .key(apiKey)
-                .query("type:bose_factory_store");
+                .query("type:type1");
 
         multiSearch.addProvider(builder.build());//Add store provider
 
         multiSearch.addSearchListener(multiSearchListener);
-        multiSearch.autocompleteStore("Woodburn Company Stores");
+        multiSearch.autocompleteStore("Vista & Foothill, Vista");
         synchronized (multiSearchListener){
             try{
                 multiSearchListener.wait();
@@ -278,7 +278,7 @@ public class DetailsTests {
         if (multiSearchListener.exception!=null){
             Assert.fail(multiSearchListener.exception.toString());
         }
-        Assert.assertEquals("expectedID","8ad198b442c766280142c76629be00a5",multiSearchListener.items.get(0).getId());
+        Assert.assertEquals("expectedID","10008_98261",multiSearchListener.items.get(0).getId());
     }
 
     /***
@@ -299,7 +299,7 @@ public class DetailsTests {
         multiSearch.addProvider(builder.build());//Add address provider
 
         multiSearch.addSearchListener(multiSearchListener);
-        multiSearch.detailsAddress("VmlhIERvbWl0aWFuYSwgODAwNzggUG96enVvbGkgTkEsIEl0YWxpYQ==");
+        multiSearch.detailsAddress("aGVyZTphZjpzdHJlZXQ6WVlhYnBWdEtON3RnSmx2YzlOdEZ0Qw==");
         synchronized (multiSearchListener){
             try {
                 multiSearchListener.wait();
@@ -342,7 +342,7 @@ public class DetailsTests {
             }
         }
         if (multiSearchListener.exception==null){
-            Assert.assertEquals("expectedID","VmlhIERvbWl0aWFuYSwgODAwNzggUG96enVvbGkgTkEsIEl0YWxpYQ==",multiSearchListener.items.get(0).getId());
+            Assert.assertEquals("expectedID","aGVyZTphZjpzdHJlZXQ6WVlhYnBWdEtON3RnSmx2YzlOdEZ0Qw==",multiSearchListener.items.get(0).getId());
         }
         else{
             Assert.fail(multiSearchListener.exception.toString());

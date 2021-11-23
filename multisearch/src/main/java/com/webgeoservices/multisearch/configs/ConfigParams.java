@@ -13,6 +13,7 @@ public class ConfigParams {
     private Component component;
     private Data data;
     private String extended;
+    private String fields;
 
     /***
      * Protected constructor
@@ -125,5 +126,21 @@ public class ConfigParams {
      */
     protected void setExtended(String extended) {
         this.extended = extended;
+    }
+
+    /***
+     * Returns the <code>fields</code> value.
+     * @return String
+     */
+    public String getFields() {
+        return fields;
+    }
+
+    /***
+     * The <code>fields</code> value, indicating in which details level the results should be returned.
+     * @param fields String
+     */
+    protected void setFields(String fields) {
+        this.fields = fields;
     }
 }

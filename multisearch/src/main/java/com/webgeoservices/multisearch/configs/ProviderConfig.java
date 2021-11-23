@@ -114,6 +114,7 @@ public class ProviderConfig {
 
         configParams.setData(builder.data);
         configParams.setExtended(builder.extended);
+        configParams.setFields(builder.fields);
     }
 
     /***
@@ -131,6 +132,7 @@ public class ProviderConfig {
         private Component component;
         private Data data;
         private String extended ="";
+        private String fields ="";
 
         /***
          * Public constructor
@@ -262,6 +264,19 @@ public class ProviderConfig {
          */
         public Builder extended(String extended){
             this.extended = extended.trim();
+            return this;
+        }
+
+        /***
+         * You can use this parameter to limit the returning fields (by default, all fields are return).
+         * Available fields are (geometry) (fields should be separated by a ,). 
+         * By using this parameter you will limit content of responses to the geometry part. 
+         * No address component provided.
+         * @param fields
+         * @return
+         */
+        public Builder fields(String fields){
+            this.fields = fields.trim();
             return this;
         }
 
