@@ -4,9 +4,10 @@ Smart search of multiple places and addresses APIs
 ---
 Woosmap MultiSearch Android is a native library designed to return location suggestions by calling several autocomplete services. This library makes location searches more efficient and cost-effective by allowing you to easily combine Woosmap Localities API, Woosmap Address API, Woosmap Search API (stores) and Google Places APIs (Places Autocomplete and Places Details).
 
-> **No Interface Provided**
->
-> This library does not provide any user interface but focuses on querying autocomplete services. However, it is quite easy to display results on your own.
+{:.info}
+**No Interface Provided**  
+This library does not provide any user interface but focuses on querying autocomplete services. However, it is pretty
+easy to display results on your own.
 
 ### How are autocomplete services combined?
 ---
@@ -142,7 +143,8 @@ multiSearch.detailsMulti(<<place_id>>,SearchProviderType.LOCALITIES);
 ---
 The library requires to set a `key` for each available API in your MultiSearch implementation, whether it’s a Woosmap API or for Google Places API.
 
-> Please refer to the [documentation](https://developers.woosmap.com/support/api-keys/) to get an API Key if necessary.
+{:.info}
+Please refer to the [documentation](https://developers.woosmap.com/support/api-keys/) to get an API Key if necessary.
 
 ```java
     ProviderConfig.Builder builder;
@@ -236,7 +238,3 @@ The score could be considered as a [Levenshtein Distance](https://en.wikipedia.o
 Generally speaking, fuzzy searching (formerly known as approximate string matching) is the technique of finding strings that are approximately equal to a given pattern (rather than exactly).
 
 Have a look at the [Fuse.js scoring explanation](https://fusejs.io/concepts/scoring-theory.html) for more details.
-
----
-
-### [API Reference](https://wgs-multisearch-javadoc.s3.eu-west-3.amazonaws.com/index.html)
